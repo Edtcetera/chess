@@ -13,6 +13,10 @@ public class Piece extends StackPane {
 
     private double mouseX, mouseY;
     private double oldX, oldY;
+    private double offsetX = 0.10;
+    private double offsetY = 0.08;
+    private double offsetXplus = 0.19;
+    private double offsetYplus = 0.10;
 
     public PieceType getType(){
         return type;
@@ -34,7 +38,6 @@ public class Piece extends StackPane {
         this.type = type;
         this.color = color;
 
-        move(x,y);
         ImageView iv = new ImageView();
         iv.setFitHeight(ChessApp.TILE_SIZE * 0.8);
         iv.setPreserveRatio(true);
@@ -49,46 +52,52 @@ public class Piece extends StackPane {
                 else if (color == PieceColor.BLACK){
                     piece = new Image ("PawnB.png");
                 }
+                move(x+offsetXplus,y+offsetYplus);
                 break;
             case ROOK:
                 if (color == PieceColor.WHITE){
-                    piece = new Image ("PawnW.png");
+                    piece = new Image ("RookW.png");
                 }
                 else if (color == PieceColor.BLACK){
-                    piece = new Image ("PawnB.png");
+                    piece = new Image ("RookB.png");
                 }
+                move(x+offsetXplus,y+offsetYplus);
                 break;
             case KNIGHT:
                 if (color == PieceColor.WHITE){
-                    piece = new Image ("PawnW.png");
+                    piece = new Image ("KnightW.png");
                 }
                 else if (color == PieceColor.BLACK){
-                    piece = new Image ("PawnB.png");
+                    piece = new Image ("KnightB.png");
                 }
+                move(x+offsetX,y+offsetY);
                 break;
             case BISHOP:
                 if (color == PieceColor.WHITE){
-                    piece = new Image ("PawnW.png");
+                    piece = new Image ("BishopW.png");
                 }
                 else if (color == PieceColor.BLACK){
-                    piece = new Image ("PawnB.png");
+                    piece = new Image ("BishopB.png");
                 }
+                move(x+offsetX,y+offsetY);
                 break;
             case QUEEN:
                 if (color == PieceColor.WHITE){
-                    piece = new Image ("PawnW.png");
+                    piece = new Image ("QueenW.png");
                 }
                 else if (color == PieceColor.BLACK){
-                    piece = new Image ("PawnB.png");
+                    piece = new Image ("QueenB.png");
                 }
+                move(x+offsetX,y+offsetY);
                 break;
             case KING:
                 if (color == PieceColor.WHITE){
-                    piece = new Image ("PawnW.png");
+                    piece = new Image ("KingW.png");
                 }
                 else if (color == PieceColor.BLACK){
-                    piece = new Image ("PawnB.png");
+                    piece = new Image ("KingB.png");
                 }
+                move(x+offsetX,y+offsetY);
                 break;
         }
         iv.setImage(piece);
@@ -104,7 +113,7 @@ public class Piece extends StackPane {
         });
     }
 
-    public void move(int x, int y){
+    public void move(double x, double y){
         oldX = x * ChessApp.TILE_SIZE;
         oldY = y * ChessApp.TILE_SIZE;
         relocate(oldX, oldY);
